@@ -12,6 +12,8 @@ function buildUserDataScript(githubRegistrationToken, label) {
       'unzip awscliv2.zip',
       './aws/install',
       'service docker start',
+      'curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose',
+      'chmod +x /usr/bin/docker-compose',
       'mkdir actions-runner && cd actions-runner',
       'case $(uname -m) in aarch64) ARCH="arm64" ;; amd64|x86_64) ARCH="x64" ;; esac && export RUNNER_ARCH=${ARCH}',
       'curl -O -L https://github.com/actions/runner/releases/download/v2.294.0/actions-runner-linux-${RUNNER_ARCH}-2.294.0.tar.gz',
