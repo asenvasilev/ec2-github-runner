@@ -6,6 +6,8 @@ const config = require('./config');
 function buildUserDataScript(githubRegistrationToken, label) {
     return [
       '#!/bin/bash',
+      'mkswap /dev/nvme1n1',
+      'swapon /dev/nvme1n1',
       'yum install docker git libicu60 -y -y ',
       'yum remove -y awscli',
       'curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"',
@@ -40,6 +42,22 @@ async function startEc2Instance(label, githubRegistrationToken) {
     IamInstanceProfile: { Name: config.input.iamRoleName },
     TagSpecifications: config.tagSpecifications,
     KeyName: config.KeyName,
+    BlockDeviceMappings: [{
+      DeviceName: "/dev/sda1",
+      Ebs: {
+        DeleteOnTermination: true ,
+        VolumeSize: 15,
+        VolumeType: 'gp2'
+      }
+    },
+    {
+      DeviceName: "/dev/sdb",
+      Ebs: {
+        DeleteOnTermination: true ,
+        VolumeSize: 15,
+        VolumeType: 'gp2'
+      }
+    }],
   };
 
   try {
