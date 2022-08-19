@@ -43,7 +43,7 @@ async function startEc2Instance(label, githubRegistrationToken) {
     TagSpecifications: config.tagSpecifications,
     KeyName: config.KeyName,
     BlockDeviceMappings: [{
-      DeviceName: "/dev/sda1",
+      DeviceName: "/dev/xvda",
       Ebs: {
         DeleteOnTermination: true ,
         VolumeSize: 15,
