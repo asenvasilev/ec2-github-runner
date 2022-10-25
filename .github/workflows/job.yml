@@ -1,5 +1,5 @@
 name: testing
-on: pull_request
+on: workflow_dispatch
 jobs:
   start-runner:
     name: Start self-hosted EC2 runner
