@@ -21,9 +21,9 @@ jobs:
           mode: start
           github-token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
           ec2-image-id: ami-026b57f3c383c2eec
-          ec2-instance-type: t3.nano
-          subnet-id: subnet-123
-          security-group-id: sg-123
+          ec2-instance-type: t2.micro
+          subnet-id: subnet-0cb76afbb7ac7428e
+          security-group-id: sg-004d4e0d0021706bc
           iam-role-name: my-role-name # optional, requires additional permissions
           aws-resource-tags: > # optional, requires additional permissions
             [
